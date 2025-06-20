@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:group_app_project/ui/Screen/home_screen.dart';
-import 'package:group_app_project/ui/Screen/Authentication/login_screen.dart';
-import 'package:group_app_project/ui/Screen/Authentication/signup_screen.dart';
+import 'package:group_app_project/ui/screen/home_screen.dart';
+import 'package:group_app_project/ui/screen/Authentication/login_screen.dart';
+import 'package:group_app_project/ui/screen/Authentication/signup_screen.dart';
 
 void main() async {
   runApp(const MyApp());

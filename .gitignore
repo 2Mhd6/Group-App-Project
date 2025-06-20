@@ -1,0 +1,19 @@
+# Flutter/Dart
+build/
+.dart_tool/
+.packages
+pubspec.lock
+
+# iOS
+ios/Pods/
+ios/.symlinks/
+
+# Android
+*.apk
+*.aar
+
+# VS Code
+.vscode/
+
+# Mac
+.DS_Store

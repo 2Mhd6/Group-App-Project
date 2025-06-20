@@ -32,6 +32,7 @@ class CartScreen extends StatelessWidget {
               }
 
               if (state is SuccessGetReadableUserLocation) {
+                cartBloc.isLocationDetected = true;
                 cartBloc.add(DetermineFinalCostEvent());
               }
             },
@@ -102,12 +103,13 @@ class CartScreen extends StatelessWidget {
                             );
                           },
                         ),
-
+                        
+                        EmptySpace.sizeH16,
                         // To go to map screen
                         Align(
                           alignment: Alignment.centerLeft,
                           child: InkWell(
-                            onTap: () {
+                            onTap: !locationBloc.isPermissionGranted ? null : () {
                               locationBloc.add(FetchUserLocation());
                               Navigator.push(
                                 context,
@@ -129,7 +131,7 @@ class CartScreen extends StatelessWidget {
                                 return Text(
                                   'Where is your location?',
                                   style: TextStyle(
-                                    color: Colors.blue,
+                                    color: !locationBloc.isPermissionGranted ? Colors.grey :  Colors.blue,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 );
@@ -207,16 +209,4 @@ class CartScreen extends StatelessWidget {
 }
 
 // ---- For Testing Purpose ----
-class ItemModel {
-  ItemModel({
-    required this.name,
-    required this.quantity,
-    required this.price,
-    required this.imagePath,
-  });
 
-  final String name;
-  int quantity;
-  final double price;
-  final String imagePath;
-}

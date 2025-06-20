@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../theme/app_color.dart';
+import '../../../../theme/app_color.dart';
 import 'bloc/account_bloc.dart';
 
 class EditNameScreen extends StatelessWidget {

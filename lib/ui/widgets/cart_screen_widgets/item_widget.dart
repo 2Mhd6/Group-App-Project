@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:group_app_project/model/item_cart_model.dart';
 import 'package:group_app_project/shared/widgets/empty_space.dart';
 import 'package:group_app_project/theme/app_color.dart';
-import 'package:group_app_project/ui/screens/cart/cart_screen.dart';
 
 class ItemWidget extends StatelessWidget {
   const ItemWidget({super.key, required this.item, required this.onIncrement, required this.onDecrement});
 
-  final ItemModel item;
+  final ItemCartModel item;
   final void Function() onIncrement;
   final void Function() onDecrement;
 

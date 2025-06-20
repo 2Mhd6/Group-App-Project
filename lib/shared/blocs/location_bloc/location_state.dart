@@ -8,8 +8,9 @@ final class LocationInitial extends LocationState {}
 
 final class FailedToGetPermission extends LocationState {
   final String message; 
+  final bool isActive;
 
-  FailedToGetPermission({required this.message});
+  FailedToGetPermission({required this.message, required this.isActive});
 }
 
 final class SuccessGetReadableUserLocation extends LocationState{}

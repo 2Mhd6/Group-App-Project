@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../theme/app_color.dart';
+import '../../../../theme/app_color.dart';
 import 'edit_name_screen.dart';
 import 'bloc/account_bloc.dart';
 

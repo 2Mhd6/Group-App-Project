@@ -17,6 +17,7 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
   String streetName = '';
   String postalCode = '';
   bool isLocationDetected = false;
+  bool isPermissionGranted = false;
 
   // -- Selecting a location in the map
   GoogleMapController?  googleMapController;
@@ -38,7 +39,8 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
       currentUserLocation = await LocationService.determinePosition();
       emit(SuccessDetectLocation());
     }catch(e){
-      emit(FailedToGetPermission(message: e.toString()));
+      isPermissionGranted = false;
+      emit(FailedToGetPermission(message: e.toString(), isActive: isPermissionGranted));
     }
   }
 

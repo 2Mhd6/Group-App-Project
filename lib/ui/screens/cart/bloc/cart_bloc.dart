@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:group_app_project/model/item_cart_model.dart';
 import 'package:group_app_project/ui/screens/cart/cart_screen.dart';
 import 'package:meta/meta.dart';
 
@@ -9,9 +10,9 @@ part 'cart_state.dart';
 
 class CartBloc extends Bloc<CartEvent, CartState> {
 
-    List<ItemModel> items = [
-    ItemModel(name: 'Apple', quantity: 2, price: 20.23, imagePath: 'assets/cart/apples.png'),
-    ItemModel(name: 'Strawberry', quantity: 4, price: 14, imagePath: 'assets/cart/strawberry.png')
+    List<ItemCartModel> items = [
+    ItemCartModel(name: 'Apple', quantity: 2, price: 20.23, imagePath: 'assets/cart/apples.png'),
+    ItemCartModel(name: 'Strawberry', quantity: 4, price: 14, imagePath: 'assets/cart/strawberry.png')
   ];
 
   double itemsCost = 0;

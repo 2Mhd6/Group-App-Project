@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../../theme/app_color.dart';
 import 'bloc/account_bloc.dart';
 
@@ -41,10 +43,31 @@ class EditNameScreen extends StatelessWidget {
             ),
             const SizedBox(height: 24),
             ElevatedButton(
-              onPressed: () {
-                final name = _controller.text;
-                bloc.add(UpdateName(name));
-                Navigator.pop(context);
+              onPressed: () async {
+                final supabase = GetIt.instance<SupabaseClient>();
+                final user = supabase.auth.currentUser;
+                final name = _controller.text.trim();
+
+                if (user != null && name.isNotEmpty) {
+                  try {
+                    await supabase
+                        .from('users')
+                        .update({'name': name})
+                        .eq('id', user.id);
+
+                    bloc.add(UpdateName(name));
+                    Navigator.pop(context);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Name updated successfully'),
+                      ),
+                    );
+                  } catch (e) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Failed to update name: $e')),
+                    );
+                  }
+                }
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColor.primaryAppColor,

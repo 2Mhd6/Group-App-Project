@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:group_app_project/shared/blocs/location_bloc/location_bloc.dart';
 import 'package:group_app_project/shared/setup.dart';
-import 'package:group_app_project/ui/screens/onboard/onboard_screen.dart';
+import 'package:group_app_project/UI/screens/onboard/onboard_screen.dart';
 
 
 void main() async {

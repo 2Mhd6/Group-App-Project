@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../theme/app_color.dart';
 import 'edit_name_screen.dart';
 import 'bloc/account_bloc.dart';
+import 'package:get_it/get_it.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AccountScreen extends StatelessWidget {
   const AccountScreen({super.key});
@@ -69,7 +71,6 @@ class AccountScreen extends StatelessWidget {
                     );
                   },
                 ),
-
                 const Spacer(),
                 Padding(
                   padding: const EdgeInsets.symmetric(
@@ -93,29 +94,6 @@ class AccountScreen extends StatelessWidget {
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
-                ),
-              ],
-            ),
-            bottomNavigationBar: BottomNavigationBar(
-              currentIndex: 2,
-              selectedItemColor: AppColor.primaryAppColor,
-              unselectedItemColor: Colors.grey,
-              onTap: (index) {
-                // TODO: navigation
-              },
-              items: const [
-                BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.shopping_cart),
-                  label: 'Cart',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.person),
-                  label: 'Account',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.list_alt),
-                  label: 'Orders',
                 ),
               ],
             ),
@@ -186,8 +164,32 @@ class DeleteAccountDialog extends StatelessWidget {
                     style: TextButton.styleFrom(
                       backgroundColor: Colors.grey.shade300,
                     ),
-                    onPressed: () {
-                      Navigator.pop(context);
+                    onPressed: () async {
+                      final supabase = GetIt.instance<SupabaseClient>();
+                      final user = supabase.auth.currentUser;
+
+                      if (user != null) {
+                        try {
+                          await supabase
+                              .from('users')
+                              .delete()
+                              .eq('id', user.id);
+                          await supabase.auth.signOut();
+                          Navigator.pop(context);
+                          Navigator.pushReplacementNamed(context, '/');
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Account deleted successfully'),
+                            ),
+                          );
+                        } catch (e) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('Failed to delete account: $e'),
+                            ),
+                          );
+                        }
+                      }
                     },
                     child: Text(
                       'Delete',

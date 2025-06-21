@@ -9,9 +9,11 @@
       "dependencies": [
         "cupertino_icons",
         "dart_mappable",
+        "equatable",
         "flutter",
         "flutter_bloc",
         "flutter_dotenv",
+        "flutter_hooks",
         "geocoding",
         "geolocator",
         "get_it",
@@ -191,6 +193,13 @@
       ]
     },
     {
+      "name": "flutter_hooks",
+      "version": "0.21.2",
+      "dependencies": [
+        "flutter"
+      ]
+    },
+    {
       "name": "flutter_dotenv",
       "version": "5.2.1",
       "dependencies": [
@@ -216,6 +225,14 @@
         "meta",
         "sky_engine",
         "vector_math"
+      ]
+    },
+    {
+      "name": "equatable",
+      "version": "2.0.7",
+      "dependencies": [
+        "collection",
+        "meta"
       ]
     },
     {

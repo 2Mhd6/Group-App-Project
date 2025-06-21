@@ -1,18 +1,15 @@
 part of 'main_bloc.dart';
 
 
-class MainState {
+class MainState extends Equatable {
   final int bottomNavigationBarIndex;
 
-  MainState({required this.bottomNavigationBarIndex,});
+  const MainState({required this.bottomNavigationBarIndex,});
 
   MainState copyWith({int? bottomNavigationBarIndex}) => MainState(bottomNavigationBarIndex: bottomNavigationBarIndex ?? 0);
 
-  @override
-  bool operator ==(Object other) => 
-  identical(this, other) ;
   
   @override
-  int get hashCode => bottomNavigationBarIndex.hashCode;
+  List<Object?> get props => [bottomNavigationBarIndex,];
 
 }

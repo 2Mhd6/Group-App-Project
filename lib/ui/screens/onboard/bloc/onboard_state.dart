@@ -1,21 +1,14 @@
 part of 'onboard_bloc.dart';
 
-sealed class OnboardState {}
+class OnboardState extends Equatable{
+   final int index;
 
-class FirstItemState extends OnboardState {
-  // Represents the content shown on the first onboarding page
-  FirstItemState();
+   const OnboardState({ this.index = 0});
+
+   OnboardState copyWith({int? index}) => OnboardState(index: index ?? this.index);
+
+
+   @override
+  List<Object?> get props => [index,];
 }
 
-class SecondItemState extends OnboardState {
-  // Represents the content shown on the second onboarding page
-  SecondItemState();
-}
-
-class ThirdItemState extends OnboardState {
-  // Represents the content shown on the third onboarding page
-  ThirdItemState();
-}
-
-  // Represents the state after all pages ended
-class OnBoardEndedState extends OnboardState{}

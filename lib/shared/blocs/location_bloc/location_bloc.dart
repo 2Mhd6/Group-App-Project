@@ -37,6 +37,7 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
   FutureOr<void> fetchUserLocation(FetchUserLocation event, Emitter<LocationState> emit) async{
     try{
       currentUserLocation = await LocationService.determinePosition();
+      isPermissionGranted = true;
       emit(SuccessDetectLocation());
     }catch(e){
       isPermissionGranted = false;

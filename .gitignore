@@ -20,3 +20,6 @@ android/
 
 # Mac
 .DS_Store
+
+
+*.env

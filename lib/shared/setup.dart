@@ -1,4 +1,5 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:get_it/get_it.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SetupSupabase {
@@ -10,5 +11,12 @@ class SetupSupabase {
       url: dotenv.get('url'), 
       anonKey: dotenv.get('key')
     );
+  }
+}
+
+
+class InjectionContainer{
+
+  void setUp() async{
   }
 }

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:group_app_project/model/fruit_model.dart';
 import '../../../../theme/app_color.dart';
 import 'bloc/quantity_bloc.dart';
 
 class ItemDetailsScreen extends StatelessWidget {
-  const ItemDetailsScreen({super.key});
+  const ItemDetailsScreen({super.key, required this.fruit});
+
+  final Fruit fruit;
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +34,7 @@ class ItemDetailsScreen extends StatelessWidget {
                 Center(
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(16),
-                    child: Image.asset(
-                      'assets/images/apple.png',
+                    child: Image.asset(fruit.image,
                       width: width * 0.9,
                       height: height * 0.3,
                       fit: BoxFit.cover,
@@ -42,8 +44,8 @@ class ItemDetailsScreen extends StatelessWidget {
                 SizedBox(height: height * 0.03),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: width * 0.06),
-                  child: const Text(
-                    'Apples',
+                  child: Text(
+                    fruit.name,
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -120,7 +122,7 @@ class ItemDetailsScreen extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.symmetric(
                     horizontal: width * 0.06,
-                    vertical: height * 0.02,
+                    vertical: height * 0.04,
                   ),
                   decoration: const BoxDecoration(
                     color: Color(0xfff5f5f5),

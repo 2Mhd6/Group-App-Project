@@ -326,6 +326,12 @@
       "languageVersion": "3.5"
     },
     {
+      "name": "get_it",
+      "rootUri": "file:///Users/mohammed/.pub-cache/hosted/pub.dev/get_it-8.0.3",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
       "name": "glob",
       "rootUri": "file:///Users/mohammed/.pub-cache/hosted/pub.dev/glob-2.1.3",
       "packageUri": "lib/",

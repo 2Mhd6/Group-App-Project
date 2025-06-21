@@ -1,5 +1,12 @@
 build/
 pubspec.lock
 
-.dart_tool/
+.dart_tool/*
 .vscode
+
+android/
+ios/
+macos/
+linux/
+windows/
+web/

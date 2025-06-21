@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:group_app_project/shared/widgets/empty_space.dart';
 import '../../../../theme/app_color.dart';
 import 'bloc/quantity_bloc.dart';
 

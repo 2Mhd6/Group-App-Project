@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:group_app_project/shared/blocs/location_bloc/location_bloc.dart';
-import 'package:group_app_project/ui/screens/Authentication/login_screen.dart';
-import 'package:group_app_project/ui/screens/Authentication/signup_screen.dart';
 import 'package:group_app_project/ui/screens/bottom_nav/bottom_nav_screen.dart';
 
 

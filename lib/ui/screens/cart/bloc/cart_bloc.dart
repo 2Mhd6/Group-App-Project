@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:group_app_project/model/item_cart_model.dart';
-import 'package:group_app_project/ui/screens/cart/cart_screen.dart';
 import 'package:meta/meta.dart';
 
 part 'cart_event.dart';

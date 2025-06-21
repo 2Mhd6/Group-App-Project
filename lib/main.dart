@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'UI/screens/splash/splash_screen.dart';
-import 'UI/screens/item_details/item_details.dart';
-import 'UI/screens/account/account_screen.dart';
-import 'UI/screens/account/bloc/account_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:group_app_project/shared/blocs/location_bloc/location_bloc.dart';
+import 'package:group_app_project/shared/setup.dart';
+import 'package:group_app_project/ui/screens/onboard/onboard_screen.dart';
 
-void main() {
-  runApp(const MyApp());
+
+void main() async {
+
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await dotenv.load(fileName: ".env");
+
+  await SetupSupabase.setUpSupabase();
+
+  InjectionContainer.setUp();
+
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -14,21 +24,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'FoodPrime',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(useMaterial3: true, fontFamily: 'Poppins'),
-
-      home: BlocProvider(
-        create: (_) => AccountBloc(),
-        child: const AccountScreen(),
+    return BlocProvider(
+      create: (context) => LocationBloc()..add(FetchUserLocation()),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false, 
+        home: OnBoardScreen()
       ),
-
-      routes: {
-        // '/': (context) => const SplashScreen(),
-        '/item': (context) => const ItemDetailsScreen(),
-        // '/account': (context) => const AccountScreen(),
-      },
     );
   }
 }

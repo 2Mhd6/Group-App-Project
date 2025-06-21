@@ -5,15 +5,21 @@ build/
 pubspec.lock
 
 # iOS
+ios/
 ios/Pods/
 ios/.symlinks/
 
 # Android
 *.apk
 *.aar
+android/
+
 
 # VS Code
 .vscode/
 
 # Mac
 .DS_Store
+
+
+*.env

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/services.dart';
-import 'package:go_router/go_router.dart';
 import 'package:group_app_project/theme/app_color.dart';
-
 import 'package:group_app_project/ui/screens/Authentication/bloc/authentication_bloc.dart';
 import 'package:group_app_project/ui/screens/Authentication/bloc/authentication_event.dart';
 import 'package:group_app_project/ui/screens/Authentication/bloc/authentication_state.dart';
+import 'package:group_app_project/ui/screens/Authentication/signup_screen.dart';
+import 'package:group_app_project/ui/screens/bottom_nav/bottom_nav_screen.dart';
 import 'package:group_app_project/ui/widgets/Login%20&%20signup/custom_bottom_text.dart';
 import 'package:group_app_project/ui/widgets/Login%20&%20signup/custom_button.dart';
 import 'package:group_app_project/ui/widgets/Login%20&%20signup/custom_text_field.dart';
@@ -40,7 +40,10 @@ class LoginScreen extends StatelessWidget {
                   isSuccess: true,
                 );
                 Future.delayed(const Duration(seconds: 2), () {
-                  context.go("/home");
+                  print('----');
+                  if(context.mounted){
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BottomNavScreen()));
+                  }
                 });
               }
             },
@@ -95,7 +98,7 @@ class LoginScreen extends StatelessWidget {
                         CustomBottomText(
                           question: "Don’t have an account? ",
                           actionText: "Create account",
-                          route: "/signup",
+                          screen: SignupScreen(),
                           questionColor: AppColor.hintText,
                           actionColor: AppColor.buttonColor,
                         ),

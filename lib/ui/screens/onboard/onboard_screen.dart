@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:group_app_project/theme/app_color.dart';
+import 'package:group_app_project/ui/screens/Authentication/signup_screen.dart';
 import 'package:group_app_project/ui/screens/main_screen/main_screen.dart';
 import 'package:group_app_project/ui/screens/onboard/onboard_item.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -52,7 +53,11 @@ void _nextPage(int currentIndex, PageController pageController, BuildContext con
       );
     } else {
       // Navigate to main page
-      context.go(MainScreen.routeName);
+
+      // ----- STILL WORKING ON IT
+      // ----- Add here shared preference as true
+      
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SignupScreen()));
     }
   }
   @override

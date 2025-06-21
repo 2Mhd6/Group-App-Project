@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class CustomBottomText extends StatelessWidget {
   final String question;
   final String actionText;
-  final String route;
+  final Widget screen;
   final Color questionColor;
   final Color actionColor;
 
@@ -12,7 +11,7 @@ class CustomBottomText extends StatelessWidget {
     super.key,
     required this.question,
     required this.actionText,
-    required this.route,
+    required this.screen,
     required this.questionColor,
     required this.actionColor,
   });
@@ -28,7 +27,7 @@ class CustomBottomText extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            context.go(route);
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => screen));
           },
           child: Text(
             actionText,

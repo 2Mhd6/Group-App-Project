@@ -1,5 +1,6 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
+import 'package:group_app_project/repositories/user_data_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SetupSupabase {
@@ -17,6 +18,7 @@ class SetupSupabase {
 
 class InjectionContainer{
 
-  void setUp() async{
+  static void setUp() async{
+    GetIt.I.registerSingleton<UserDataModel>(UserDataModel());
   }
 }

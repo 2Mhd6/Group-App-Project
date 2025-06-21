@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:group_app_project/repositories/auth/auth.dart';
 import 'package:group_app_project/shared/setup.dart';
 import 'package:group_app_project/ui/screens/Authentication/bloc/authentication_event.dart';
@@ -58,6 +59,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         return;
       }
 
+      // -- Getting user info as DI
+      // await GetIt.I.
       final uuid = const Uuid().v4();
       final client = SetupSupabase.sharedSupabase.client;
 

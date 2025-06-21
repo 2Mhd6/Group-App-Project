@@ -5,11 +5,12 @@ import 'package:group_app_project/ui/screens/account/account_screen.dart';
 import 'package:group_app_project/ui/screens/bottom_nav/bloc/bottom_nav_bloc.dart';
 import 'package:group_app_project/ui/screens/cart/cart_screen.dart';
 import 'package:group_app_project/ui/screens/home/home_screen.dart';
+import 'package:group_app_project/ui/screens/main_screen/screens/orders/orders_screen.dart';
 
 class BottomNavScreen extends StatelessWidget {
   BottomNavScreen({super.key});
 
-  List<Widget> screens = [HomeScreen(), CartScreen(), CartScreen(), AccountScreen()];
+  List<Widget> screens = [HomeScreen(), CartScreen(), OrdersScreen(), AccountScreen()];
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +26,7 @@ class BottomNavScreen extends StatelessWidget {
             builder: (context, state) {
               return Scaffold(
                       bottomNavigationBar: NavigationBar(
+                        indicatorColor: Colors.transparent,
                         selectedIndex: bottomNavBloc.index,
                         onDestinationSelected: (value) {
                           bottomNavBloc.add(ChangeScreenEvent(index: value));

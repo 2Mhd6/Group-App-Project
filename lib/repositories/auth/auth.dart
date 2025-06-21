@@ -14,14 +14,18 @@ class Auth {
       password: password
     );
   }
-
-
-    static Future<void> signIn({required String email, required String password}) async {
+  
+  
+  static Future<void> signIn({required String email, required String password}) async {
     
     await _authSupabase.client.auth.signInWithPassword(
       email:  email,
       password: password
-    );
+      );
+  }
+
+  static Future<void> signOut() async {
+    await _authSupabase.client.auth.signOut();
   }
 
 

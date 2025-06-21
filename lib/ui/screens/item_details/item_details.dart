@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:group_app_project/model/fruit_model.dart';
+import 'package:group_app_project/repositories/user_data_model.dart';
 import '../../../../theme/app_color.dart';
 import 'bloc/quantity_bloc.dart';
 
@@ -17,7 +19,8 @@ class ItemDetailsScreen extends StatelessWidget {
         builder: (context, constraints) {
           final width = constraints.maxWidth;
           final height = constraints.maxHeight;
-
+          final user = GetIt.I.get<UserDataModel>();
+          print(user.user?.id);
           return Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(

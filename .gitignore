@@ -8,6 +8,7 @@ pubspec.lock
 ios/
 ios/Pods/
 ios/.symlinks/
+.env
 
 # Android
 *.apk

@@ -5,6 +5,7 @@ import 'package:group_app_project/shared/blocs/location_bloc/location_bloc.dart'
 import 'package:group_app_project/shared/setup.dart';
 import 'package:group_app_project/ui/screens/Authentication/signup_screen.dart';
 import 'package:group_app_project/ui/screens/bottom_nav/bottom_nav_screen.dart';
+import 'package:group_app_project/ui/screens/onboard/onboard_screen.dart';
 
 
 void main() async {
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
       create: (context) => LocationBloc()..add(FetchUserLocation()),
       child: MaterialApp(
         debugShowCheckedModeBanner: false, 
-        home: SignupScreen()
+        home: OnBoardScreen()
       ),
     );
   }

@@ -186,10 +186,18 @@ class CartScreen extends StatelessWidget {
                               label: 'Checkout',
                               onPressed: cartBloc.isConfirmTheOrder
                                   ? () {
+
+                                    
                                     final user = GetIt.I.get<UserDataModel>();
                                     final address =  '${locationBloc.countryName}, ${locationBloc.streetName}, ${locationBloc.postalCode}';
                                     final OrderModel order = OrderModel(orderId: Uuid().v4(), userId: user.user!.id, totalPrice: cartBloc.totalCost, orderDate: DateTime.now(), address: address, latitude: locationBloc.currentUserLocation.latitude, longitude: locationBloc.currentUserLocation.longitude);
-                                    print(order.toString());
+                                    print('Order ID: ${order.orderId}');
+                                      print('User ID: ${order.userId}');
+                                      print('Total Price: ${order.totalPrice}');
+                                      print('Order Date: ${order.orderDate}');
+                                      print('Address: ${order.address}');
+                                      print('Latitude: ${order.latitude}');
+                                      print('Longitude: ${order.longitude}');
                                     cartBloc.add(ConfirmOrder(order: order));
                                       showDialog(
                                         context: context,

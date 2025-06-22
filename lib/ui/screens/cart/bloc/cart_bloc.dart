@@ -104,9 +104,9 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         .eq('user_id', user!.id).maybeSingle();
 
    try{
-    await Notification.sendPushNotification(notificationID: queryNotificationId['notification_id'] as String);
+   // await Notification.sendPushNotification(notificationID: queryNotificationId['notification_id'] as String);
 
-     await Order.addNewOrder(order: event.order);
+     await OrdersRepository.addNewOrder(order: event.order);
 
      emit(SuccessConfirmationOrder());
      

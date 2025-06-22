@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
 class Notification {
@@ -9,7 +10,7 @@ static Future<void> sendPushNotification({required String notificationID}) async
 
   final headers = {
     'Content-Type': 'application/json',
-    'Authorization': 'os_v2_app_64h3mldxffevlnio4zlvu55mrr7v4abvj2ju4y5gntbagxm2opa4vzxczy2dq2nzhd6h6z2ey7vtqsigayn3jzxieppcxf2cp2k3g7a', // Replace with your REST API key
+    'Authorization': dotenv.get('authorization_notification')
   };
 
   final body = jsonEncode({

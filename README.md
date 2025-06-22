@@ -1,16 +1,54 @@
-# group_app_project
+![Tuwaiq Academy Logo](assets/README/tuwaiq_academy_logo.png)
 
-A new Flutter project.
+# Food Prime
+Food Prime is a mobile application built with Flutter that allows users to browse available fruits, add them to a cart, and place orders. The app supports full CRUD operations for managing fruits and orders, uses Supabase for backend services (authentication and database), implements BLoC for scalable state management, and uses Dependency Injection to decouple components for better maintainability
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+# Getting Started
+### Prerequisites
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Flutter SDK 
+
+A code editor (such as VS Code or Android Studio)
+
+### Installation
+1. Clone the repository:
+
+   ```
+   git clone https://github.com/2Mhd6/Group-App-Project.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```
+   cd Group-App-Project
+   ```
+   
+3. Install dependencies:
+
+   ```
+   flutter pub get
+   ```
+
+4. Run the app:
+
+   ```
+   flutter run
+   ```
+
+
+## Output
+[**Check out the output**](https://drive.google.com/file/d/1zNreDn5aSNhXYxqljzng8mKJA-aL6CxZ/view?usp=sharing)
+
+
+
+
+## Created By
+
+[**Mohammed S. Alshammari**]
+[**Abdulrahman Alsalem**]
+[**Bushra Alzoman**]
+[**Ameerah**]
+

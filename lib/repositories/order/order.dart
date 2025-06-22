@@ -1,18 +1,21 @@
 import 'package:group_app_project/model/order_model/order_model.dart';
 import 'package:group_app_project/shared/setup.dart';
 
-class Order {
 
-  static Future<void> addNewOrder({ required OrderModel order}) async {
-    print('---');
-    final response = await SetupSupabase.sharedSupabase.client.from('orders').insert(order.toMap());
+//Handling order-related data from the database.
+class OrdersRepository {
 
-    
+//add New Order
+  static Future<void> addNewOrder({required OrderModel order}) async {
+    return await SetupSupabase.sharedSupabase.client
+        .from('orders')
+        .insert(order.toMap());
   }
+//Fetch all orders.
+  Future<List<OrderModel>> getAllOrders({required String userId }) async {
 
-  static Future<List<OrderModel>> getAllOrders({required String userId }) async {
-
-    final result = await SetupSupabase.sharedSupabase.client.from('orders').select().eq('user_id', userId);
+//Fetch data associated with this user.
+    final result = await SetupSupabase.sharedSupabase.client.from('orders').select().eq('user_id', '15a5c743-31bc-4d52-afda-f6f25faf5bed');
 
     if(result.isEmpty){
       return [];

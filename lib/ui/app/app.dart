@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:group_app_project/repositories/order/order.dart';
 import 'package:group_app_project/theme/app_color.dart';
 import 'package:group_app_project/ui/app/bloc/auth_bloc.dart';
 import 'router.dart';
@@ -8,8 +9,13 @@ class DeliveryApp extends StatelessWidget {
   const DeliveryApp({super.key});
 
   @override
-  Widget build(BuildContext context) => BlocProvider<AuthBloc>(
-    create: (context) => AuthBloc(),
+  Widget build(BuildContext context) => MultiBlocProvider(
+    providers: [
+      RepositoryProvider<OrdersRepository>(
+        create: (context) => OrdersRepository(),
+      ),
+      BlocProvider<AuthBloc>(create: (context) => AuthBloc(),),
+    ],
     child: const _AppContent(),
   );
 }
@@ -18,8 +24,8 @@ class _AppContent extends StatelessWidget {
   const _AppContent();
   @override
   Widget build(BuildContext context) {
-      // get authbloc
-      final AuthBloc authBloc = context.read<AuthBloc>();
+    // get authbloc
+    final AuthBloc authBloc = context.read<AuthBloc>();
 
     //Navigation between pages using GoRouter.
     return MaterialApp.router(
@@ -45,7 +51,6 @@ class _AppContent extends StatelessWidget {
         useMaterial3: true,
       ),
 
-      //Connecting the app with the "router.dart" file.
       routerConfig: router(authBloc),
     );
   }

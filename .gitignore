@@ -10,3 +10,4 @@ macos/
 linux/
 windows/
 web/
+.env

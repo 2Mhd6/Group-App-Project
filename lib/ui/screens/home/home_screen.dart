@@ -13,10 +13,10 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Fruit> fruits = [
-      Fruit(image: 'assets/home/cherry.png', name: 'Cherries', price: 19),
-      Fruit(image: 'assets/home/strawberry.png', name: 'Strawberries', price: 19),
-      Fruit(image: 'assets/home/apple.png', name: 'Apples', price: 19),
-      Fruit(image: 'assets/home/orange.png', name: 'Oranges', price: 19),
+      Fruit(image: 'assets/home/cherry.png', name: 'Cherry', price: 19),
+      Fruit(image: 'assets/home/strawberry.png', name: 'Strawberry', price: 19),
+      Fruit(image: 'assets/home/apple.png', name: 'Apple', price: 19),
+      Fruit(image: 'assets/home/orange.png', name: 'Orange', price: 19),
     ];
 
     return AnnotatedRegion<SystemUiOverlayStyle>(

@@ -29,10 +29,8 @@ class OrderModelMapper extends ClassMapperBase<OrderModel> {
   static double _$totalPrice(OrderModel v) => v.totalPrice;
   static const Field<OrderModel, double> _f$totalPrice =
       Field('totalPrice', _$totalPrice, key: r'total_price');
-  static String _$status(OrderModel v) => v.status;
-  static const Field<OrderModel, String> _f$status = Field('status', _$status);
-  static String _$orderDate(OrderModel v) => v.orderDate;
-  static const Field<OrderModel, String> _f$orderDate =
+  static DateTime _$orderDate(OrderModel v) => v.orderDate;
+  static const Field<OrderModel, DateTime> _f$orderDate =
       Field('orderDate', _$orderDate, key: r'order_date');
   static String _$address(OrderModel v) => v.address;
   static const Field<OrderModel, String> _f$address =
@@ -49,7 +47,6 @@ class OrderModelMapper extends ClassMapperBase<OrderModel> {
     #orderId: _f$orderId,
     #userId: _f$userId,
     #totalPrice: _f$totalPrice,
-    #status: _f$status,
     #orderDate: _f$orderDate,
     #address: _f$address,
     #latitude: _f$latitude,
@@ -61,7 +58,6 @@ class OrderModelMapper extends ClassMapperBase<OrderModel> {
         orderId: data.dec(_f$orderId),
         userId: data.dec(_f$userId),
         totalPrice: data.dec(_f$totalPrice),
-        status: data.dec(_f$status),
         orderDate: data.dec(_f$orderDate),
         address: data.dec(_f$address),
         latitude: data.dec(_f$latitude),
@@ -124,8 +120,7 @@ abstract class OrderModelCopyWith<$R, $In extends OrderModel, $Out>
       {String? orderId,
       String? userId,
       double? totalPrice,
-      String? status,
-      String? orderDate,
+      DateTime? orderDate,
       String? address,
       double? latitude,
       double? longitude});
@@ -145,8 +140,7 @@ class _OrderModelCopyWithImpl<$R, $Out>
           {String? orderId,
           String? userId,
           double? totalPrice,
-          String? status,
-          String? orderDate,
+          DateTime? orderDate,
           String? address,
           double? latitude,
           double? longitude}) =>
@@ -154,7 +148,6 @@ class _OrderModelCopyWithImpl<$R, $Out>
         if (orderId != null) #orderId: orderId,
         if (userId != null) #userId: userId,
         if (totalPrice != null) #totalPrice: totalPrice,
-        if (status != null) #status: status,
         if (orderDate != null) #orderDate: orderDate,
         if (address != null) #address: address,
         if (latitude != null) #latitude: latitude,
@@ -165,7 +158,6 @@ class _OrderModelCopyWithImpl<$R, $Out>
       orderId: data.get(#orderId, or: $value.orderId),
       userId: data.get(#userId, or: $value.userId),
       totalPrice: data.get(#totalPrice, or: $value.totalPrice),
-      status: data.get(#status, or: $value.status),
       orderDate: data.get(#orderDate, or: $value.orderDate),
       address: data.get(#address, or: $value.address),
       latitude: data.get(#latitude, or: $value.latitude),

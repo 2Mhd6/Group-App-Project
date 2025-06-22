@@ -40,7 +40,7 @@ class LoginScreen extends StatelessWidget {
                   isSuccess: true,
                 );
                 Future.delayed(const Duration(seconds: 2), () {
-                  print('----');
+                  
                   if(context.mounted){
                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BottomNavScreen()));
                   }

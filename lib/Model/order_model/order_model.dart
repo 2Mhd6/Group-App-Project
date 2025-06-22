@@ -8,19 +8,18 @@ part 'order_model.mapper.dart';
 
 @MappableClass()
 class OrderModel with OrderModelMappable {
-
-    OrderModel({
+  OrderModel({
     required this.orderId,
     required this.userId,
     required this.totalPrice,
-    required this.status,
+  //  required this.status,
     required this.orderDate,
     required this.address,
     required this.latitude,
     required this.longitude,
   });
 
-  @MappableField(key: 'order_id')
+  @MappableField(key: 'order_id') 
   final String orderId;
 
   @MappableField(key: 'user_id')
@@ -29,17 +28,15 @@ class OrderModel with OrderModelMappable {
   @MappableField(key: 'total_price')
   final double totalPrice;
 
-  final String status;
+  // final String status;
 
   @MappableField(key: 'order_date')
-  final String orderDate;
+  final DateTime orderDate; 
 
   final String address;
 
   final double latitude;
 
   final double longitude;
-
-
 }
 

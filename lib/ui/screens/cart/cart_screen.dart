@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
+import 'package:group_app_project/model/order_model/order_model.dart';
+import 'package:group_app_project/repositories/user_data_model.dart';
 import 'package:group_app_project/shared/widgets/app_custom_button.dart';
 import 'package:group_app_project/shared/widgets/empty_space.dart';
 import 'package:group_app_project/theme/app_color.dart';
@@ -10,6 +13,7 @@ import 'package:group_app_project/ui/widgets/cart_screen_widgets/confirmation_di
 import 'package:group_app_project/ui/widgets/cart_screen_widgets/cost_widget.dart';
 import 'package:group_app_project/ui/widgets/cart_screen_widgets/empty_cart_widget.dart';
 import 'package:group_app_project/ui/widgets/cart_screen_widgets/item_widget.dart';
+import 'package:uuid/uuid.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
@@ -182,6 +186,11 @@ class CartScreen extends StatelessWidget {
                               label: 'Checkout',
                               onPressed: cartBloc.isConfirmTheOrder
                                   ? () {
+                                    final user = GetIt.I.get<UserDataModel>();
+                                    final address =  '${locationBloc.countryName}, ${locationBloc.streetName}, ${locationBloc.postalCode}';
+                                    final OrderModel order = OrderModel(orderId: Uuid().v4(), userId: user.user!.id, totalPrice: cartBloc.totalCost, orderDate: DateTime.now(), address: address, latitude: locationBloc.currentUserLocation.latitude, longitude: locationBloc.currentUserLocation.longitude);
+                                    print(order.toString());
+                                    cartBloc.add(ConfirmOrder(order: order));
                                       showDialog(
                                         context: context,
                                         builder: (context) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:group_app_project/repositories/auth/auth.dart';
 import '../../../../theme/app_color.dart';
 import 'edit_name_screen.dart';
 import 'bloc/account_bloc.dart';
@@ -88,34 +89,14 @@ class AccountScreen extends StatelessWidget {
                         vertical: 12,
                       ),
                     ),
-                    child: const Text(
-                      'Log out',
-                      style: TextStyle(color: Colors.white),
+                    child: InkWell(
+                      onTap: () => Auth.signOut(),
+                      child: Text(
+                        'Log out',
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            bottomNavigationBar: BottomNavigationBar(
-              currentIndex: 2,
-              selectedItemColor: AppColor.primaryAppColor,
-              unselectedItemColor: Colors.grey,
-              onTap: (index) {
-                // TODO: navigation
-              },
-              items: const [
-                BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.shopping_cart),
-                  label: 'Cart',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.person),
-                  label: 'Account',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.list_alt),
-                  label: 'Orders',
                 ),
               ],
             ),

@@ -28,4 +28,10 @@ final class DeleteItemEvent extends CartEvent{
 
 final class DetermineFinalCostEvent extends  CartEvent{}
 
+final class ConfirmOrder extends CartEvent{
+  final OrderModel order; 
+
+  ConfirmOrder({required this.order});
+}
+
 

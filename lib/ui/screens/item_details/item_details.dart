@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:group_app_project/model/cart.dart';
 import 'package:group_app_project/model/fruit_model.dart';
-import 'package:group_app_project/repositories/user_data_model.dart';
+import 'package:group_app_project/model/item_cart_model.dart';
 import '../../../../theme/app_color.dart';
 import 'bloc/quantity_bloc.dart';
 
@@ -14,13 +15,14 @@ class ItemDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => QuantityBloc(),
+      create: (context) => QuantityBloc(),
       child: LayoutBuilder(
         builder: (context, constraints) {
           final width = constraints.maxWidth;
           final height = constraints.maxHeight;
-          final user = GetIt.I.get<UserDataModel>();
-          print(user.user?.id);
+
+          final quantityBloc = context.read<QuantityBloc>();
+
           return Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
@@ -139,7 +141,7 @@ class ItemDetailsScreen extends StatelessWidget {
                       BlocBuilder<QuantityBloc, QuantityState>(
                         builder: (context, state) {
                           return Text(
-                            'Total \$${state.quantity * 41}',
+                            'Total \$${state.quantity * 19}',
                             style: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -148,7 +150,22 @@ class ItemDetailsScreen extends StatelessWidget {
                         },
                       ),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () async {
+                          GetIt.I.get<Cart>().items.add(
+                            ItemCartModel(
+                              name: fruit.name, 
+                              quantity: quantityBloc.quantity, 
+                              price: 19, 
+                              imagePath: 'assets/cart/${fruit.name}.png'
+                            )
+                          );
+
+                          await Future.delayed(Duration(milliseconds: 500));
+
+                          if(context.mounted){
+                            Navigator.pop(context);
+                          }
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColor.primaryAppColor,
                           padding: EdgeInsets.symmetric(

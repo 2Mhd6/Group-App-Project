@@ -3,11 +3,14 @@ import 'package:group_app_project/shared/setup.dart';
 
 class Order {
 
-  Future<void> addNewOrder({ required OrderModel order}) async {
-    await SetupSupabase.sharedSupabase.client.from('orders').insert(order.toMap());
+  static Future<void> addNewOrder({ required OrderModel order}) async {
+    print('---');
+    final response = await SetupSupabase.sharedSupabase.client.from('orders').insert(order.toMap());
+
+    
   }
 
-  Future<List<OrderModel>> getAllOrders({required String userId }) async {
+  static Future<List<OrderModel>> getAllOrders({required String userId }) async {
 
     final result = await SetupSupabase.sharedSupabase.client.from('orders').select().eq('user_id', userId);
 

@@ -1,18 +1,25 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:get_it/get_it.dart';
+import 'package:group_app_project/model/cart.dart';
 import 'package:group_app_project/model/item_cart_model.dart';
+import 'package:group_app_project/model/order_model/order_model.dart';
+import 'package:group_app_project/repositories/notification/notification.dart';
+import 'package:group_app_project/repositories/order/order.dart';
+import 'package:group_app_project/repositories/user_data_model.dart';
+import 'package:group_app_project/shared/setup.dart';
 import 'package:meta/meta.dart';
+import 'package:postgrest/src/postgrest_builder.dart';
+import 'package:postgrest/src/types.dart';
 
 part 'cart_event.dart';
 part 'cart_state.dart';
 
 class CartBloc extends Bloc<CartEvent, CartState> {
 
-    List<ItemCartModel> items = [
-    ItemCartModel(name: 'Apple', quantity: 2, price: 20.23, imagePath: 'assets/cart/apples.png'),
-    ItemCartModel(name: 'Strawberry', quantity: 4, price: 14, imagePath: 'assets/cart/strawberry.png')
-  ];
+  List<ItemCartModel> items = GetIt.I.get<Cart>().items;
 
   double itemsCost = 0;
   double deliveryFee = 0;
@@ -37,6 +44,8 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     on<DeleteItemEvent>(deleteItem);
 
     on<DetermineFinalCostEvent>(determineCost);
+
+    on<ConfirmOrder>(confirmOrder);
   }
 
   FutureOr<void> increment(IncrementItemByOneEvent event, Emitter<CartState> emit) {
@@ -85,4 +94,29 @@ class CartBloc extends Bloc<CartEvent, CartState> {
      totalCost = itemsCost;
      emit(CartInitial());
   }
+
+  FutureOr<void> confirmOrder(ConfirmOrder event, Emitter<CartState> emit) async{
+    
+    final user = GetIt.I.get<UserDataModel>().user;
+    final queryNotificationId = SetupSupabase.sharedSupabase.client
+        .from('users')
+        .select('notification_id')
+        .eq('user_id', user!.id).maybeSingle();
+
+   try{
+    await Notification.sendPushNotification(notificationID: queryNotificationId['notification_id'] as String);
+
+     await Order.addNewOrder(order: event.order);
+
+     emit(SuccessConfirmationOrder());
+     
+   }catch(error){
+    log(error.toString());
+   }
+
+  }
+}
+
+extension on PostgrestTransformBuilder<PostgrestMap?> {
+  void operator [](String other) {}
 }

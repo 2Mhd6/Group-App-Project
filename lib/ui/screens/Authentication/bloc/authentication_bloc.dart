@@ -1,9 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:group_app_project/repositories/auth/auth.dart';
+import 'package:group_app_project/repositories/user_data_model.dart';
 import 'package:group_app_project/shared/setup.dart';
 import 'package:group_app_project/ui/screens/Authentication/bloc/authentication_event.dart';
 import 'package:group_app_project/ui/screens/Authentication/bloc/authentication_state.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 import 'package:uuid/uuid.dart';
 
@@ -60,9 +62,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }
 
       // -- Getting user info as DI
-      // await GetIt.I.
       final uuid = const Uuid().v4();
       final client = SetupSupabase.sharedSupabase.client;
+
+      OneSignal.login(uuid);
+      GetIt.I.get<UserDataModel>().user = user;
+      
 
       await client.from('users').insert({
         'user_id': user.id,

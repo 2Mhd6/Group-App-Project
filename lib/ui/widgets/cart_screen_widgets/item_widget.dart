@@ -28,7 +28,7 @@ class ItemWidget extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Image.asset(item.imagePath,width: 120,),
+            child: Image.asset('assets/cart/${item.name}.png',width: 120,),
           ),
 
           EmptySpace.sizeW16,

@@ -13,4 +13,6 @@ final class SuccessDeleteItemState extends CartState{}
 
 final class SuccessDeterminingFinalCostState extends CartState{}
 
+final class SuccessConfirmationOrder extends CartState{}
+
 
